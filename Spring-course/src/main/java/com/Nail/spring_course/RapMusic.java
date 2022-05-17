@@ -4,18 +4,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Component
-public class RockMusic implements Music {
+public class RapMusic implements Music {
     private List<String> songList = new ArrayList<String>();
 
     {
-        songList.add("Wind cries Mary");
-        songList.add("Rock With you");
-        songList.add("Rock you Like a Hurricane");
+        songList.add("Cars With the Boom");
+        songList.add("Get Low");
+        songList.add("Paper Planes");
     }
-
     @Override
     public String getSong() {
         return songList.get((int)(Math.floor(Math.random() * 3)));

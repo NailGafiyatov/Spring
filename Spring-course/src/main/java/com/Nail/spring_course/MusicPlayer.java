@@ -1,14 +1,30 @@
 package com.Nail.spring_course;
 
-public class MusicPlayer {
-    private Music music;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-    //IoC
-    public MusicPlayer(Music music) {
-        this.music = music;
+@Component
+public class MusicPlayer {
+    private Music classicalMusic;
+    private Music rockMusic;
+    private Music rapMusic;
+
+    @Autowired
+    public MusicPlayer(@Qualifier("classicalMusic") Music classicalMusic, @Qualifier("rockMusic") Music rockMusic,@Qualifier("rapMusic") Music rapMusic) {
+        this.classicalMusic = classicalMusic;
+        this.rockMusic = rockMusic;
+        this.rapMusic = rapMusic;
     }
 
-    public void playMusic() {
-        System.out.println("Play " + music.getSong());
+    public String playMusic(Enum e) {
+        if (TypeMusic.CLASSICAL.equals(e)) {
+            return "Playing " + classicalMusic.getSong();
+        } else if (TypeMusic.RAP.equals(e)) {
+            return "Playing " + rapMusic.getSong();
+        } else if (TypeMusic.ROCK.equals(e)) {
+            return "Playing " + rockMusic.getSong();
+        }
+        return null;
     }
 }
